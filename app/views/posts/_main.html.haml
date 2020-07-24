@@ -2,19 +2,20 @@
   .post
     .post-box
       = @posts.each do |post|
-        .post__user-name
-          takuya
         %ul.more-list
           %li.show
             = link_to "詳細", post_path(post.id), method: :get
-          %li.edit
-            = link_to "編集", edit_post_path(post.id), method: :get
-          %li.delete
-            = link_to "削除", post_path(post.id), method: :delete
+          - if user_signed_in? && current_user.id == post.user_id
+            %li.edit
+              = link_to "編集", edit_post_path(post.id), method: :get
+            %li.delete
+              = link_to "削除", post_path(post.id), method: :delete
+        .post__user-name
+          = post.user.username
         .post-text
           = post.text
         .post-inofo
           .post-date
-            2020/01/01 00:00
+            = post.created_at
           .post-good
             good

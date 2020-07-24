@@ -1,9 +1,9 @@
-.more
+- if user_signed_in? && current_user.id == @post.user_id
   %ul.more_list
     %li.edit
       = link_to "編集", edit_post_path(@post.id), method: :get
     %li.delete
       = link_to "削除", post_path(@post.id), method: :delete
-  .text
-    = @post.text
-  .name
+.text
+  = @post.text
+.name

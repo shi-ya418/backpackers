@@ -1,7 +1,4 @@
-.container.row
-  = form_with model: @post, do |form|
+.contents.row
+  .container
     投稿する
-    = form.text_field :image, placeholder: "Image Url"
-    = form.text_field :video, placeholder: "video Url"
-    = form.text_area :text, placeholder: "text", rows: "10"
-    = form.submit "SEND"
+    = render 'form'

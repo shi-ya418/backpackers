@@ -1,10 +1,17 @@
 .header
   .title
     .title-name
-      = link_to "BACKPACKERS", "#"
+      = link_to "BACKPACKERS", "/"
     .title-icon
   .user
     .user-name
-      = link_to "takuya", "#"
-    .new-post
-      = link_to "新規投稿", "#"
+      = link_to "#{current_user.username}", "/users/#{current_user.id}"
+
+  - if user_signed_in?
+    .user_nav
+      = link_to "ログアウト", destroy_user_session_path, method: :delete
+      = link_to "投稿する", new_post_path, class: "post"
+  - else
+    .user_nav
+      = link_to "ログイン", new_user_session_path, class: "post"
+      = link_to "新規登録", new_user_registration_path, class: "post"
