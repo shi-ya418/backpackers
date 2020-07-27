@@ -1,5 +1,8 @@
 = form_with model: @post do |form|
-  = form.text_field :image, placeholder: "Image Url"
-  = form.text_field :video, placeholder: "video Url"
-  = form.text_area :text, placeholder: "text", rows: "10"
-  = form.submit "SEND"
+  .post-area
+    .post-area__form
+    = form.text_field :image, placeholder: "Image Url"
+    = form.text_field :video, placeholder: "video Url"
+    = form.text_area :text, placeholder: "text"
+    = form.collection_select :tag_ids, Tag.all, :id, :name
+  = form.submit "投稿"

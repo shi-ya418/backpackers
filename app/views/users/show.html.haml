@@ -1,8 +1,6 @@
 .contents.row
   = @username
+  さんの投稿一覧
   = @posts.each do |post|
-    .content_post
-    = post.image
-    = post.text
-    .name
+    =render partial: '/posts/post', locals: { post: post}
 

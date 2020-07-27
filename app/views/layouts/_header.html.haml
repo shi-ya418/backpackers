@@ -4,12 +4,13 @@
       = link_to "BACKPACKERS", "/"
     .title-icon
   .user
-    .user-name
-      = link_to "#{current_user.username}", "/users/#{current_user.id}"
 
   - if user_signed_in?
+    .user-name
+      = link_to "#{current_user.username}", "/users/#{current_user.id}"
     .user_nav
       = link_to "ログアウト", destroy_user_session_path, method: :delete
+      = link_to "ユーザー情報変更",edit_user_path(current_user)
       = link_to "投稿する", new_post_path, class: "post"
   - else
     .user_nav

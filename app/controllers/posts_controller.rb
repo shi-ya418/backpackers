@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
-
+  
   def create
     Post.create(post_params)
   end
@@ -28,11 +28,13 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user)
   end
   
   private
   def post_params
-    params.require(:post).permit(:image, :text, :video).merge(user_id: current_user.id)
+    params.require(:post).permit(:image, :text, :video, :tag_ids).merge(user_id: current_user.id)
   end
 
   def set_post
@@ -40,9 +42,7 @@ class PostsController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in?
   end
   
 end

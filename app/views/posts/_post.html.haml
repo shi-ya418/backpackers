@@ -1,5 +1,3 @@
-.post__user-name
-  = post.user.username
 %ul.more-list
   %li.show
     = link_to "詳細", post_path(post.id), method: :get
@@ -8,10 +6,12 @@
       = link_to "編集", edit_post_path(post.id), method: :get
     %li.delete
       = link_to "削除", post_path(post.id), method: :delete
+.post__user-name
+  = post.user.username
 .post-text
   = post.text
 .post-inofo
   .post-date
-    post
+    = post.created_at
   .post-good
     good
