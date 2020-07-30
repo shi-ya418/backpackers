@@ -12,12 +12,6 @@ class PostsController < ApplicationController
   
   def create
     Post.create(post_params)
-    @post.user_id = current_user.id
-    if @post.save
-      redirect_back(fallback_location: root_path)
-    else
-      redirect_back(fallback_location: root_path)
-    end
   end
 
   def destroy
@@ -36,17 +30,11 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
-    @like = Like.new
   end
   
-
-  def search
-    @posts = Post.search(params[:keyword])
-  end 
- 
   private
   def post_params
-    params.require(:post).permit(:image, :text, :video, :tag_ids, :good_ids).merge(user_id: current_user.id)
+    params.require(:post).permit(:image, :text, :video, :tag_ids).merge(user_id: current_user.id)
   end
 
   def set_post
@@ -58,5 +46,3 @@ class PostsController < ApplicationController
   end
   
 end
-
-

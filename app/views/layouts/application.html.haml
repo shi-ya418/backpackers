@@ -6,13 +6,9 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application'
-
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'layouts/header'
-    .main
-      .left
-        = yield
-      .right
-        = render 'layouts/side' 
+    = yield
+    = render 'layouts/side' 
     
