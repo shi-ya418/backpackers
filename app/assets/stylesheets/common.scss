@@ -1,0 +1,36 @@
+* {
+  text-decoration: none;
+  color: #000;
+  overflow: scroll;
+}
+.header{
+  display: flex;
+  justify-content: space-around;
+  height: 60px;
+  width: 100%;
+  background-color: #BBFFFF;
+}
+.main {
+  display: flex;
+
+  .left {
+    width: calc(100% - 200px);
+    height: calc(100vh - 60px);
+  }
+  .right {
+    width: 200px;
+    background-color: #DDFFFF;
+
+  }
+
+}
+.hidden{
+  display: none;
+}
+.icon {
+  font-size: 1.5em;
+}
+.search-input {
+  font-family: Font Awesome 5 Free;
+}
+ 
