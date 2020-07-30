@@ -1,6 +1,10 @@
 .contents.row
   = @username
   さんの投稿一覧
-  = @posts.each do |post|
+  - @posts.each do |post|
     =render partial: '/posts/post', locals: { post: post}
+.good
+いいねしている投稿
+- @user.liked_posts.each do |post|
+  = post.text
 
