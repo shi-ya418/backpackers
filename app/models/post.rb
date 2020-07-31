@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
-
   has_many :comments
+  has_many :goods
   has_many :post_tags
   has_many :tags, through: :post_tags
   belongs_to :user
@@ -18,7 +18,5 @@ class Post < ApplicationRecord
     end
   end  
 
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
-  end
+  accepts_nested_attributes_for :tags, allow_destroy: true 
 end

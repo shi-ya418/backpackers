@@ -7,11 +7,7 @@
       = link_to "編集", edit_post_path(@post.id), method: :get
     %li.delete
       = link_to "削除", post_path(@post.id), method: :delete
-
-.post__user-name 
-  = @post.user.username
-  さんの投稿
-.post-text
+.text
   = @post.text
 .post-video
   = image_tag @post.image.url, class: 'Post__image' if @post.image.present?
@@ -42,9 +38,9 @@
 .container
   - if current_user
     コメント
-    = form_with model: [@post, @comment], local: true, id: "comment-form" do |form|
-      = form.text_area :text, placeholder: "コメントする",rows: "2", class: "textbox"
-      = form.submit "投稿", class: "form__submit"
+    = form_with(model: [@post, @comment], local: true) do |form|
+      = form.text_area :text, placeholder: "コメントする"
+      = form.submit "SEND"
 
 .comments
   - if @comments

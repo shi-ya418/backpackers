@@ -45,17 +45,11 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
-    @like = Like.new
   end
   
-
-  def search
-    @posts = Post.search(params[:keyword])
-  end 
- 
   private
   def post_params
-    params.require(:post).permit(:image, :text, :video, :tag_ids, :good_ids).merge(user_id: current_user.id)
+    params.require(:post).permit(:image, :text, :video, :tag_ids).merge(user_id: current_user.id)
   end
 
   def set_post
@@ -67,5 +61,3 @@ class PostsController < ApplicationController
   end
   
 end
-
-
