@@ -62,3 +62,4 @@ gem 'devise'
 gem 'streamio-ffmpeg'
 gem 'jquery-rails'
 gem 'fog-aws'
+

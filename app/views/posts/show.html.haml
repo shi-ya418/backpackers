@@ -23,15 +23,15 @@
 .like
   - if user_signed_in?
     - if current_user.already_liked?(@post)
-      = link_to post_like_path(@post), method: :delete, id: "liked", remote: true do
-        = icon('fas', 'heart', class: 'liked') 
+      = link_to post_like_path(@post), method: :delete do
+        = icon('fas', 'heart', class: 'liked icon') 
       = @post.likes.count
     - else
-      = link_to post_likes_path(@post), method: :post, id: "yet-liked", remote: true do
-        = icon('fas', 'heart', class: 'yet-liked') 
+      = link_to post_likes_path(@post), method: :post do
+        = icon('fas', 'heart', class: 'yet-liked icon') 
       = @post.likes.count
   - else 
-    = icon('fas', 'heart', class: 'liked')
+    = icon('fas', 'heart', class: 'liked icon')
     = @post.likes.coun
   .liked-user
     %h3 いいねしたユーザー
