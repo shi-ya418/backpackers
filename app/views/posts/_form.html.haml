@@ -1,8 +1,15 @@
 = form_with model: @post do |form|
   .post-area
     .post-area__form
-    = form.text_field :image, placeholder: "Image Url"
-    = form.text_field :video, placeholder: "video Url"
-    = form.text_area :text, placeholder: "text"
-    = form.collection_select :tag_ids, Tag.all, :id, :name
-  = form.submit "投稿"
+    .image
+    写真を投稿する
+    = f.label :image, class: 'Form__inputImage' do
+      = icon('fas', 'image', class: 'Form__icon, icon')
+      = f.file_field :image, class: 'hidden'
+    動画を投稿する
+    = f.label :video, class: 'Form__inputVideo' do
+      = icon('fas', 'video', class: 'Form__icon, icon')
+      = f.file_field :video, class: 'hidden'
+    = f.text_area :text, placeholder: "text"
+    = f.hidden_field :user_id, :value => current_user.id
+  = f.submit "投稿"

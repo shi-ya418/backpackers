@@ -11,12 +11,21 @@ class PostsController < ApplicationController
   end
   
   def create
-    Post.create(post_params)
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to root_path, notice: '投稿されました'
+    else
+      flash.now[:alert] = 'textを入力してください。'
+      render :new
+    end
   end
 
   def destroy
     post = Post.find(params[:id])
     post.destroy
+    if post.destroy
+      redirect_to root_path, notice: '投稿が削除されました'
+    end
   end
 
   def edit
@@ -25,6 +34,12 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     post.update(post_params)
+    if post.save
+      redirect_to root_path, notice: '更新が完了しました'
+    else
+      flash.now[:alert] = 'textを入力してください。'
+      render :new
+    end
   end
 
   def show

@@ -1,6 +1,7 @@
 - if user_signed_in? && current_user.id == @post.user_id
-  = @post.user.username
-  さんの投稿一覧
+  %h2
+    = @post.user.username
+    さんの投稿一覧
   %ul.more_list
     %li.edit
       = link_to "編集", edit_post_path(@post.id), method: :get
@@ -8,8 +9,31 @@
       = link_to "削除", post_path(@post.id), method: :delete
 .text
   = @post.text
-.name
-  = @post.user.username
+.post-video
+  = image_tag @post.image.url, class: 'Post__image' if @post.image.present?
+  = video_tag @post.video.url, class: 'Post__video', controls: true, autoplay: true, loop: true, muted: true, width: "800", height: "auto"  if @post.video.present?
+.post-inofo
+  .post-date
+    = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+
+.like
+  - if user_signed_in?
+    - if current_user.already_liked?(@post)
+      = link_to post_like_path(@post), method: :delete do
+        = icon('fas', 'heart', class: 'liked icon') 
+      = @post.likes.count
+    - else
+      = link_to post_likes_path(@post), method: :post do
+        = icon('fas', 'heart', class: 'yet-liked icon') 
+      = @post.likes.count
+  - else 
+    = icon('fas', 'heart', class: 'liked icon')
+    = @post.likes.coun
+  .liked-user
+    %h3 いいねしたユーザー
+    - @post.liked_user.each do |user|
+      .user.name
+      = user.username
 
 .container
   - if current_user
@@ -20,7 +44,10 @@
 
 .comments
   - if @comments
-    コメント一覧
-    = @comments.each do |comment|
+    .comment-list
+    %h3 コメント一覧
+    - @comments.each do |comment|
+      .comment-usrname 
       = link_to comment.user.username, "/users/#{comment.user_id}"
+      .comment-text
       = comment.text
