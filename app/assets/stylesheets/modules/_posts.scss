@@ -1,3 +1,10 @@
-* {
+.left{
+  overflow: scroll;
   box-sizing: border-box;
+  .post-box{
+    background-color: rgba($color: #fff, $alpha: 1);
+    margin: 20px 0;
+    padding: 20px;
+    border: 2px solid #ddd;
+  }
 }

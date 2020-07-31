@@ -1,9 +1,6 @@
 .AccountPage
   .AccountPage__title
-    %h2 Edit Account
-    %h5 アカウントの編集
-    = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'Button'
-    = link_to "トップページに戻る", :back, class: 'Button'
+    %h2 アカウントの編集
   .AccountPage__form
     = form_for(current_user) do |f|
       .FormField
@@ -16,4 +13,4 @@
           = f.label :email
         .FormField__input--normal
           = f.email_field :email
-      = f.submit "Update", class: 'Button UserButton'
+      = f.submit "更新", class: 'Button UserButton'
