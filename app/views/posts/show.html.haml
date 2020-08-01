@@ -1,7 +1,6 @@
 - if user_signed_in? && current_user.id == @post.user_id
-  %h2
-    = @post.user.username
-    さんの投稿一覧
+  = @post.user.username
+  さんの投稿一覧
   %ul.more_list
     %li.edit
       = link_to "編集", edit_post_path(@post.id), method: :get
@@ -16,7 +15,7 @@
   .post-date
     = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
 
-.like
+.good
   - if user_signed_in?
     - if current_user.already_liked?(@post)
       = link_to post_like_path(@post), method: :delete do
@@ -30,7 +29,7 @@
     = icon('fas', 'heart', class: 'liked icon')
     = @post.likes.coun
   .liked-user
-    %h3 いいねしたユーザー
+    いいねしたユーザー
     - @post.liked_user.each do |user|
       .user.name
       = user.username
@@ -44,10 +43,7 @@
 
 .comments
   - if @comments
-    .comment-list
-    %h3 コメント一覧
+    コメント一覧
     - @comments.each do |comment|
-      .comment-usrname 
       = link_to comment.user.username, "/users/#{comment.user_id}"
-      .comment-text
       = comment.text

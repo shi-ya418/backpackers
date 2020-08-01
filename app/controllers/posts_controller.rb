@@ -11,21 +11,18 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(post_params)
+    Post.create(post_params)
+    @post.user_id = current_user.id
     if @post.save
-      redirect_to root_path, notice: '投稿されました'
+      redirect_back(fallback_location: root_path)
     else
-      flash.now[:alert] = 'textを入力してください。'
-      render :new
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    if post.destroy
-      redirect_to root_path, notice: '投稿が削除されました'
-    end
   end
 
   def edit
@@ -34,12 +31,6 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     post.update(post_params)
-    if post.save
-      redirect_to root_path, notice: '更新が完了しました'
-    else
-      flash.now[:alert] = 'textを入力してください。'
-      render :new
-    end
   end
 
   def show

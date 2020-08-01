@@ -1,6 +1,8 @@
 .AccountPage
   .AccountPage__title
-    %h2 ログイン
+    %h2 Log in
+    %h5 登録しているユーザーでログイン
+    = render "devise/shared/links"
   .AccountPage__form
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .FormField

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to root_path, notice: 'user情報が更新されました'
+      redirect_to root_path
     else
       render :edit
     end
