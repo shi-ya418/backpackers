@@ -1,37 +1,34 @@
 - @posts.each do |post|
   .post-box
-    %ul.more-list
+    %ul.item-list
       %li.show
+        = icon('fas', 'search-plus', class: 'show icon')
         = link_to "詳細", post_path(post.id), method: :get
       - if user_signed_in? && current_user.id == post.user_id
         %li.edit
+          = icon('far', 'edit', class: 'edit icon')
           = link_to "編集", edit_post_path(post.id), method: :get
         %li.delete
+          = icon('far', 'trash-alt', class: 'delite icon')
           = link_to "削除", post_path(post.id), method: :delete
+
     
     .post__user-name
-      投稿者
+      投稿者:
       = post.user.username
-    %h5.post-date
-      投稿日
-      = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
     .post-image
       = image_tag post.image.url, class: 'Post__image' if post.image.present?
     .post-video
       = video_tag post.video.url, class: 'Post__video', controls: true, autoplay: true, loop: true, muted: true, width: "800", height: "auto"  if post.video.present?
+    %h5.post-date
+      投稿日:
+      = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+    .post-tag
+    - post.tags.each do |tag|
+      = icon('fas', 'tags', class: 'tag icon')
+      = tag.name
     .post-text
       = post.text
     .post-like{id: "likes_buttons_#{post.id}"}
       = render partial: "posts/like_post", locals: {post: post}
-    %ul.post-info
-      %li
-        いいね！
-        = post.likes.count
-        件
-      %li
-       
-    .liked-user
-      いいねしたユーザー
-      - post.liked_user.each do |user|
-        .user.name
-        = user.username
+    

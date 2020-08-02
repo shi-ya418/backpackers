@@ -13,6 +13,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      tag_list = tag_params[:name].split(/[[:blank:]]+/).select(&:present?)
+      @post.save_tags(tag_list)
       redirect_to root_path, notice: '投稿されました'
     else
       flash.now[:alert] = 'textを入力してください。'
@@ -55,8 +57,13 @@ class PostsController < ApplicationController
  
   private
   def post_params
-    params.require(:post).permit(:image, :text, :video, :tag_ids, :good_ids).merge(user_id: current_user.id)
+    params.require(:post).permit(:image, :text, :video, :good_ids).merge(user_id: current_user.id)
   end
+
+  def tag_params
+    params.require(:post).permit(:name)
+  end
+
 
   def set_post
     @post = Post.find(params[:id])
