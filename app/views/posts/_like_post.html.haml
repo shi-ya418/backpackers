@@ -10,3 +10,15 @@
     = link_to post_likes_path(id: post.id, post_id: post.id), method: :post, id: "yet-liked" do
       = icon('far', 'heart', class: 'yet-liked icon') 
     = icon('far', 'comment', class: 'comment icon')
+%ul.post-info
+  %li
+    いいね！
+    = post.likes.count
+    件
+  %li
+       
+.liked-user
+  いいねしたユーザー
+  - post.liked_user.each do |user|
+    .user.name
+    = user.username

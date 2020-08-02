@@ -26,7 +26,12 @@ h4 {
 h5 {
   font-size: 12px;
 }
-
+.more-list{
+  display: flex;
+  .more-list__item{
+    padding-right: 20px;
+  }
+}
 body {
   background: radial-gradient(ellipse at center, rgba(255,255,255,0) 40%,rgba(255,255,255,0.5) 60%,rgba(255,255,255,1) 100%) , url(background1.png);
   background-position: center center;
