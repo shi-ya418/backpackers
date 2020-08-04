@@ -8,3 +8,4 @@ if Rails.env.production?
     }
     config.fog_directory  = 'backpackers418'
   end
+end
