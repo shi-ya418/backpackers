@@ -1,5 +1,9 @@
 current directory: /Users/shiiyatakuya/projects/backpackers/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+<<<<<<< HEAD
 /Users/shiiyatakuya/.rbenv/versions/2.6.5/bin/ruby -I /Users/shiiyatakuya/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200812-74208-1662s3k.rb extconf.rb
+=======
+/Users/shiiyatakuya/.rbenv/versions/2.6.5/bin/ruby -I /Users/shiiyatakuya/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200803-36199-2tq1yb.rb extconf.rb
+>>>>>>> master
 checking for BIO_read() in -lcrypto... yes
 checking for SSL_CTX_new() in -lssl... yes
 checking for openssl/bio.h... yes
@@ -38,4 +42,8 @@ linking shared-object puma/puma_http11.bundle
 
 current directory: /Users/shiiyatakuya/projects/backpackers/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
 make "DESTDIR=" install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20200812-74208-1cn5fv7/puma
+=======
+/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20200803-36199-85vhaw/puma
+>>>>>>> master

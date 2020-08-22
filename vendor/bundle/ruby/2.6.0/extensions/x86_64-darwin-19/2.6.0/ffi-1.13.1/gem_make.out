@@ -1,5 +1,9 @@
 current directory: /Users/shiiyatakuya/projects/backpackers/vendor/bundle/ruby/2.6.0/gems/ffi-1.13.1/ext/ffi_c
+<<<<<<< HEAD
 /Users/shiiyatakuya/.rbenv/versions/2.6.5/bin/ruby -I /Users/shiiyatakuya/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200812-74208-1fo1zys.rb extconf.rb
+=======
+/Users/shiiyatakuya/.rbenv/versions/2.6.5/bin/ruby -I /Users/shiiyatakuya/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200803-36199-1052d7s.rb extconf.rb
+>>>>>>> master
 checking for ffi_prep_closure_loc() in -lffi... yes
 checking for ffi_prep_cif_var()... yes
 checking for ffi_raw_call()... yes
@@ -39,4 +43,8 @@ linking shared-object ffi_c.bundle
 
 current directory: /Users/shiiyatakuya/projects/backpackers/vendor/bundle/ruby/2.6.0/gems/ffi-1.13.1/ext/ffi_c
 make "DESTDIR=" install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20200812-74208-ppl4o3
+=======
+/usr/bin/install -c -m 0755 ffi_c.bundle ./.gem.20200803-36199-iziofl
+>>>>>>> master

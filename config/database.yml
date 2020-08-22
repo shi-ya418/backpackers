@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: backpackers_production
-  username: backpackers
-  password: <%= ENV['BACKPACKERS_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

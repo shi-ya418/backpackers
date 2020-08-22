@@ -1,5 +1,9 @@
 current directory: /Users/shiiyatakuya/projects/backpackers/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
+<<<<<<< HEAD
 /Users/shiiyatakuya/.rbenv/versions/2.6.5/bin/ruby -I /Users/shiiyatakuya/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200812-74208-laerxw.rb extconf.rb
+=======
+/Users/shiiyatakuya/.rbenv/versions/2.6.5/bin/ruby -I /Users/shiiyatakuya/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200803-36199-1wbj2if.rb extconf.rb
+>>>>>>> master
 creating Makefile
 
 current directory: /Users/shiiyatakuya/projects/backpackers/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
@@ -77,4 +81,8 @@ linking shared-object sassc/libsass.bundle
 
 current directory: /Users/shiiyatakuya/projects/backpackers/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
 make "DESTDIR=" install
+<<<<<<< HEAD
 /usr/bin/install -c -m 0755 libsass.bundle ./.gem.20200812-74208-1kuxw9v/sassc
+=======
+/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20200803-36199-1uwr415/sassc
+>>>>>>> master
