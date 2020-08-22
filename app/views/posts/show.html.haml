@@ -49,7 +49,6 @@
 
     .container
       - if current_user
-        コメント
         = form_with model: [@post, @comment], local: true, id: "comment-form" do |form|
           = form.text_area :text, placeholder: "コメントする",rows: "2", class: "textbox"
           = form.submit "投稿", class: "form__submit"
