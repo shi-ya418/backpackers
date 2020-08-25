@@ -1,17 +1,43 @@
 .left{
   overflow: scroll;
   box-sizing: border-box;
-  .post-box{
-    background-color: rgba($color: #fff, $alpha: 0.5);
-    margin: 20px 0;
-    padding: 20px;
-    border: 2px solid #ddd;
-    ul {
-      display: flex;
-    }
-    li {
-      padding-right: 20px;
+  .post {
+    .post-box{
+      background-color: rgba($color: #fff, $alpha: 0.5);
+      margin: 20px;
+      padding: 30px;
+      border: 2px solid #ddd;
+      ul {
+        display: flex;
+      }
+      li {
+        padding-right: 20px;
 
+      }
+      .comments {
+        padding-top: 10px;
+        .comments-form {
+          .form-input {
+            width: 500px;
+          }
+          .button {
+            width: 100px;
+            background-color: lightskyblue;
+            border: none;
+            border-radius: 5px;
+          }
+        }
+        .comments-lists {
+          padding-top: 10px;
+          .comments-list {
+
+          }
+        }
+      }
     }
   }
+}
+.contents__title{
+  text-align: center;
+  padding: 30px;
 }

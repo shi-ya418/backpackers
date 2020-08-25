@@ -1,4 +1,10 @@
 - if user_signed_in? && current_user.id == @post.user_id
+  %ul.contents-lists
+    %li.contents-list 投稿一覧
+    %li.contents-list お気に入り一覧
+    %li.contents-list ユーザー情報
+    %li.contents-list フォロー一覧
+
   .post-box
     %h2
       = @post.user.username
@@ -47,18 +53,19 @@
           .user.name
           = user.username
 
-    .container
-      - if current_user
-        = form_with model: [@post, @comment], local: true, id: "comment-form" do |form|
-          = form.text_area :text, placeholder: "コメントする",rows: "2", class: "textbox"
-          = form.submit "投稿", class: "form__submit"
-
     .comments
-      - if @comments
-        .comment-list
-        %h3 コメント一覧
-        - @comments.each do |comment|
-          .comment-usrname 
-          = link_to comment.user.username, "/users/#{comment.user_id}"
-          .comment-text
-          = comment.text
+      .comments-form
+        - if current_user
+          = form_with model: [@post, @comment], local: true, id: "comment-form" do |form|
+            = form.text_area :text, placeholder: "コメントする",rows: "2", class: "form-input"
+            = form.submit "投稿", class: "button"
+
+      .comments-lists
+        - if @comments
+          .comment-list
+          %h3 コメント一覧
+          - @comments.each do |comment|
+            .comment-usrname 
+            = link_to comment.user.username, "/users/#{comment.user_id}"
+            .comment-text
+            = comment.text

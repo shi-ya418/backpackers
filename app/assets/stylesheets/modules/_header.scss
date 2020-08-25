@@ -1,23 +1,24 @@
 .header {
+  height: 100px;
+  width: 100%;
   .title {
+    padding-left: 20px;
     .title-name {
       font-size: 50px;
       font-weight: bolder;
-      color: #fff;
-      line-height: 60px;
       }
     }
-    .header-menu {
-      font-weight: bold;
-      font-size: 17px;
-      ul {
-        display: flex;
-        align-items: end;
-        padding-top: 35px;
-      }
-      li {
-        padding-left: 10px;
-        
-      }
+  .header-menu {
+    font-weight: bold;
+    font-size: 17px;
+    ul {
+      display: flex;
+      justify-content: space-around;
     }
+    li {
+      padding-left: 10px;
+      border-bottom: 1px solid #000;
+    
+    }
+  }
   }

@@ -1,0 +1,22 @@
+.Post__form {
+  text-align: center;
+  .FormField {
+    &__input {padding-bottom: 10px;
+      .form-input {
+        width: 500px;
+        border: 1px solid lightskyblue;
+        border-radius: 5px;
+
+      }
+    }
+    &__submit { 
+      padding-top: 20px;
+      .Button {
+        width: 150px;
+        background-color: lightskyblue;
+        border: none;
+        border-radius: 5px;
+      }
+    }
+  }
+}
