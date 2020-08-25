@@ -1,22 +1,17 @@
-- if user_signed_in?
-  - if current_user.already_liked?(post)
-    .icon-list
-    = link_to post_like_path(id: post.id, post_id: post.id), method: :delete, id: "liked" do
-      = icon('fas', 'heart', class: 'liked icon')
-    = link_to post_path(post.id), method: :get do
-      = icon('far', 'comment', class: 'comment icon')
-  
-  - else
-    = link_to post_likes_path(id: post.id, post_id: post.id), method: :post, id: "yet-liked" do
-      = icon('far', 'heart', class: 'yet-liked icon') 
-    = icon('far', 'comment', class: 'comment icon')
-%ul.post-info
-  %li
-    いいね！
-    = post.likes.count
-    件
-  %li
-       
+.like__contents
+  - if user_signed_in?
+    - if current_user.already_liked?(post)
+      .do__dislike
+        = link_to post_like_path(id: post.id, post_id: post.id), method: :delete, remote: true, id: "liked" do
+          = icon('fas', 'heart', class: 'liked icon')  
+        = icon('far', 'comment', class: 'comment icon')
+    - else
+      .do__like
+      = link_to post_likes_path(id: post.id, post_id: post.id), method: :post, remote: true, id: "yet-liked" do
+        = icon('far', 'heart', class: 'yet-liked icon')
+      = icon('far', 'comment', class: 'comment icon') 
+.like__count  
+  = "いいね！ #{post.likes.count}件"
 .liked-user
   いいねしたユーザー
   - post.liked_user.each do |user|

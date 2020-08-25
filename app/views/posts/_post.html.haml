@@ -7,13 +7,12 @@
       - if user_signed_in? && current_user.id == post.user_id
         %li.edit
           = icon('far', 'edit', class: 'edit icon')
-          = link_to "編集", edit_post_path(post.id), method: :get
+          = link_to "編集", edit_post_path(post.user_id), method: :get
         %li.delete
           = icon('far', 'trash-alt', class: 'delite icon')
           = link_to "削除", post_path(post.id), method: :delete
     .post__user-name
-      投稿者:
-      = post.user.username
+      = link_to "投稿者:#{post.user.username}", user_path(post.user_id)
     .post-image
       = image_tag post.image.url, class: 'Post__image' if post.image.present?
     .post-video
