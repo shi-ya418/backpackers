@@ -1,21 +1,23 @@
-= form_with model: @post, local: true do |f|
-  .Post__form
-    %ul
-      %li.image
-        写真を投稿する
+.Post__form
+  .FormField
+    = form_with model: @post, local: true do |f|
+      .FormField__input
         = f.label :image, class: 'Form__inputImage' do
+          %h3 写真を選択
           = icon('fas', 'image', class: 'Form__icon, icon')
           = f.file_field :image, class: 'hidden'
-      %li.video
-        動画を投稿する
+      .FormField__input
         = f.label :video, class: 'Form__inputVideo' do
+          %h3 動画を選択
           = icon('fas', 'video', class: 'Form__icon, icon')
           = f.file_field :video, class: 'hidden'
-      %li.text
-        本文
-        = f.text_area :text, placeholder: "text"
-      %li.tag
-        タグ
-        = f.text_field :name, placeholder: "tag"
-      %li.submit
-        = f.submit "投稿"
+      .FormField__input
+        %h3 本文
+        %br
+        = f.text_area :text, placeholder: "本文を入力してください", rows: 4, class: "form-input"
+      .FormField__input
+        %h3 タグ
+        %br
+        = f.text_field :name, placeholder: "スペースで複数タグ付けできます", class: "form-input"
+      .FormField__submit
+        = f.submit "投稿",class: "Button"

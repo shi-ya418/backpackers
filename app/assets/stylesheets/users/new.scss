@@ -1,0 +1,25 @@
+.AccountPage {
+  text-align: center;
+  .AccountPage__title {
+    padding: 30px;
+  }
+  .AccountPage__form {
+    .FormField {
+      &__input{
+        padding-bottom:10px;
+        .FormInput {
+          width: 300px;
+        }
+      }
+      &__Submit { 
+        padding-top: 10px;
+        .Button {
+          width: 300px;
+          background-color: lightskyblue;
+          border: none;
+          border-radius: 5px;
+        }
+      }
+    }
+  }  
+}

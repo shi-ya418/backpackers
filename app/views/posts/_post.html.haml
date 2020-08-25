@@ -11,8 +11,6 @@
         %li.delete
           = icon('far', 'trash-alt', class: 'delite icon')
           = link_to "削除", post_path(post.id), method: :delete
-
-    
     .post__user-name
       投稿者:
       = post.user.username
