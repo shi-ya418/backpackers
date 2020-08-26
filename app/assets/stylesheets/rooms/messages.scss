@@ -1,0 +1,106 @@
+.wrapper {
+  display: flex;
+}
+
+.SideBar {
+  width: 200px;
+  font-weight: bold;
+  border: 1px solid #ddd;
+
+    .Header {
+      border-bottom: 1px solid #ddd;
+      height: 60px;
+      .Header__username {
+        width: 200px;
+        font-size: 16px;
+        }
+    }    
+    .Header__userList {
+      overflow: scroll;
+      .user{
+        .user__name {
+          font-size: 15px;
+        }
+        .user__message {
+          font-size:11px;
+        }
+      }
+    }
+  }
+
+.Main-chat {
+  border: 1px solid #ddd;
+  width: calc(100vw - 200px);
+    .Header {
+      border-bottom: 1px solid #ddd;
+      height: 60px;
+      .TopItems {
+      }
+    }
+    .MessageField {
+      overflow: scroll;
+      height: calc(100vh - 272px);
+      padding: 20px;
+      .MessageBoxes {
+        .MessageBox {
+          margin-bottom: 40px;
+          padding: 10px;
+          background-color: rgba($color: #fff, $alpha: 0.5);
+          border-radius: 20px;
+          .MessageInfo {
+            display: flex;
+            padding-bottom: 12px;
+
+          }
+            .MessageInfo__userName {
+              font-size: 16px;
+            }
+            .MessageInfo__date {
+              color: #999;
+              font-size: 12px;
+            }
+          .Message {
+            color: #434a54;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .Footer{
+      height: 90px;
+      .Form {
+        margin: 20px;
+        display: flex;
+        .Form__contents {
+          position: relative;
+          width: 100%;
+          .Form__inputContent {
+            border-radius: 5px;
+            height: 50px;
+            padding: 0 10px;
+            width: 100%;
+
+          }
+          .image-icon {
+            font-size: 1.5em;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            .file {
+              display: none;
+            }
+          }
+        }
+        .Form__submit {
+          background-color: #38aef0;
+          color: #fff;
+          font-size: 16px;
+          padding: 0 30px;
+          height: 50px;
+          border: none;
+          border-radius: 5px;
+          margin-left:15px;
+        }
+      }
+    }
+}

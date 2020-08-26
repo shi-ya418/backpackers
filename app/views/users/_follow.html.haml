@@ -1,3 +1,10 @@
+.following
+  = link_to "フォロー中", followings_user_path(@user)
+  = "#{@user.followings.count}人"
+.followers
+  = link_to "フォロワー", followers_user_path(@user)
+  = "#{@user.followers.count}人"
+
 = form_with(model: current_user.following_relationships.build) do |f|
   = f.hidden_field :following_id, value: @user.id
   = f.submit "フォローする", class: "btn"
