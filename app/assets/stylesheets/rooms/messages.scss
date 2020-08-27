@@ -10,15 +10,12 @@
     .Header {
       border-bottom: 1px solid #ddd;
       height: 60px;
-      .Header__username {
-        width: 200px;
-        font-size: 16px;
-        }
     }    
     .Header__userList {
       overflow: scroll;
       .user{
         .user__name {
+          text-align: center;
           font-size: 15px;
         }
         .user__message {
@@ -34,6 +31,9 @@
     .Header {
       border-bottom: 1px solid #ddd;
       height: 60px;
+      text-align: center;
+      line-height: 60px;
+      font-weight: bold;
       // .TopItems {
       // }
     }
@@ -50,7 +50,6 @@
           .MessageInfo {
             display: flex;
             padding-bottom: 12px;
-
           }
             .MessageInfo__userName {
               font-size: 16px;
@@ -58,6 +57,7 @@
             .MessageInfo__date {
               color: #999;
               font-size: 12px;
+              padding-left: 20px;
             }
           .Message {
             color: #434a54;
@@ -75,6 +75,7 @@
           position: relative;
           width: 100%;
           .Form__inputContent {
+            border: none;
             border-radius: 5px;
             height: 50px;
             padding: 0 10px;

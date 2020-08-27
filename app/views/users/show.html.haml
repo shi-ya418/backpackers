@@ -10,12 +10,13 @@
             .username
               ="#{@user.username}"
             .user-edit
-              .edit-btn
-                = link_to "プロフィールを編集",""
-              .edit-icon
-                = icon('fas', 'cog', class: 'icon')
-              .DM-btn
-                - unless @user.id == current_user.id
+              - if user_signed_in? && @user == current_user
+                .edit-btn
+                  = link_to "プロフィールを編集",edit_user_path(current_user)
+                .edit-icon
+                  = icon('fas', 'cog', class: 'icon')
+              - else
+                .DM-btn
                   -# -if (current_user.followed_by? @user) && (@user.followed_by? current_user)
                   - if @isRoom == true
                     = link_to "DMへ", room_path(@roomId), class: "btn"
@@ -24,8 +25,8 @@
                       = fields_for @entry do |entry|
                         = entry.hidden_field :user_id, value: @user.id
                       = f.submit "DMを始める", class: "btn"
-              .DM-icon
-                = icon('fas', 'paper-plane', class: 'icon')
+                .DM-icon
+                  = icon('fas', 'paper-plane', class: 'icon')
 
           .middle-items
             .post-count
@@ -61,15 +62,25 @@
         %li#tab__post.content.show
           .post
             = render partial: '/posts/post_show_simple', locals: { post: @post}
-        -# - unless @post.present?
-        -#   .contentInfo__none
-        -#     出品している製品はありません
+          - unless @post.present?
+            .contentInfo__none
+              投稿はありません
         %li#tab__follow.content
-        %li#tab__favorite.content
-          
-          -# - unless @like.present?
-          -#   .contentInfo__none
-          -#     お気に入りしている投稿はありません
+          .followings
+            フォロー中一覧
+            %br
+            - @user.followings.each do |user|
+              = link_to "#{user.username}", user_path(user)
+          .followers
+            フォロワー一覧
+            %br
+            - @user.followers.each do |user|
+              = link_to "#{user.username}", user_path(user)
+        %li#tab__like.content
+          -# = @like.post
+          - unless @like.present?
+            .contentInfo__none
+              お気に入りしている投稿はありません
 
 
               

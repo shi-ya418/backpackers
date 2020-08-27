@@ -1,13 +1,11 @@
 .post-show {
   overflow: scroll;
-  height: 100%;
+  // height: 100%;
   padding: 10px;
   display: flex;
-  flex-wrap:wrap;
+  justify-content: center;
   .post-box{
     background-color: rgba($color: #fff, $alpha: 0.5);
-    width: 424px;
-    height: 650px;
     padding: 10px;
     margin: 10px;
     border: 2px solid #ddd;
@@ -17,34 +15,18 @@
     li {
       padding-right: 20px;
     }
-    .post-image{
-      .image{
-        object-fit: cover;
-        width: 800px;
-        height: 800px;
-      }
-    }
-    .post-video {
-      background-color: lightskyblue;
-      .video {
-        object-fit: cover;
-        padding :100px;
-        width: 800px;
-        height: 800px;
-      }
-    }
-
     .comments {
       padding-top: 10px;
       .comments-form {
         .form-input {
-          width: 500px;
+          width: 50%;
         }
-        .button {
-          width: 100px;
+        .btn {
+          width: 150px;
           background-color: lightskyblue;
           border: none;
           border-radius: 5px;
+          padding: 5px;
         }
       }
       .comments-lists {
@@ -54,8 +36,4 @@
       }
     }
   }
-}
-.contents__title{
-  text-align: center;
-  padding: 30px;
 }

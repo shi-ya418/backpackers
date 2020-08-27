@@ -1,6 +1,4 @@
 .following
-  = link_to "フォロー中", followings_user_path(@user)
-  = "#{@user.followings.count}人"
-.stat#followers
-  = link_to "フォロワー", followers_user_path(@user)
-  = "#{@user.followers.count}人"
+  = "フォロー中#{@user.followings.count}人"
+.followers
+  = "フォロワー#{@user.followers.count}人"

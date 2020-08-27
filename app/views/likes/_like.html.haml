@@ -13,7 +13,8 @@
 .like__count  
   = "いいね！ #{post.likes.count}件"
 .liked-user
-  いいねしたユーザー
-  - post.liked_user.each do |user|
-    .user.name
-    = user.username
+  - if post.liked_user.present? 
+    いいねしたユーザー
+    - post.liked_user.each do |user|
+      .user.name
+        = user.username
