@@ -4,9 +4,10 @@
   padding: 10px;
   display: flex;
   flex-wrap:wrap;
+  justify-content: space-around;
   .post-box{
     background-color: rgba($color: #fff, $alpha: 0.5);
-    width: 100%;
+    width: 424px;
     height: 650px;
     padding: 10px;
     margin: 10px;
