@@ -26,5 +26,5 @@
     .post-text
       = post.text
     .post-like{id: "likes_buttons_#{post.id}"}
-      = render partial: "posts/like_post", locals: {post: post}
+      = render partial: "likes/like", locals: {post: post}
     

@@ -4,8 +4,8 @@
 .followers
   = link_to "フォロワー", followers_user_path(@user)
   = "#{@user.followers.count}人"
-
-= form_with(model: current_user.following_relationships.find_by(following_id: @user.id),method: :delete) do |f|
-  = f.hidden_field :following_id 
-  = f.submit "フォローを外す", class: "btn"
+.follow-btn
+  = form_with(model: current_user.following_relationships.find_by(following_id: @user.id),method: :delete) do |f|
+    = f.hidden_field :following_id 
+    = f.submit "フォロー中", class: "btn unfollow"
     

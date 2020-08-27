@@ -1,38 +1,75 @@
 .mypage
   .contents
-    .content__title
-      %h2 
-        ="#{@user.username}さんのマイページ"
-    .content__lists
-      .content__list
-        .follow
-          - if user_signed_in? && @user != current_user
-            .follow_form
-              - if current_user.following?(@user)
-                = render "unfollow"
+    .upside
+      .profile
+        .left-bar
+          .user-icon
+            .image
+        .right-bar
+          .top-items
+            .username
+              ="#{@user.username}"
+            .user-edit
+              .edit-btn
+                = link_to "プロフィールを編集",""
+              .edit-icon
+                = icon('fas', 'cog', class: 'icon')
+              .DM-btn
+                - unless @user.id == current_user.id
+                  -# -if (current_user.followed_by? @user) && (@user.followed_by? current_user)
+                  - if @isRoom == true
+                    = link_to "DMへ", room_path(@roomId), class: "btn"
+                  - else
+                    = form_for @room do |f|
+                      = fields_for @entry do |entry|
+                        = entry.hidden_field :user_id, value: @user.id
+                      = f.submit "DMを始める", class: "btn"
+              .DM-icon
+                = icon('fas', 'paper-plane', class: 'icon')
+
+          .middle-items
+            .post-count
+              = "投稿 #{@posts.count}件"
+            .follow
+              - if user_signed_in? && @user != current_user
+                - if current_user.following?(@user)
+                  = render "unfollow"
+                - else
+                  = render "follow"
               - else
-                = render "follow"
-          - else
-            = render "stats"
-        .DM
-          - unless @user.id == current_user.id
-            -# -if (current_user.followed_by? @user) && (@user.followed_by? current_user)
-            - if @isRoom == true
-              = link_to "DMへ", room_path(@roomId), class: "btn"
-            - else
-              = form_for @room do |f|
-                = fields_for @entry do |entry|
-                  = entry.hidden_field :user_id, value: @user.id
-                = f.submit "DMを始める", class: "btn"
-      .content__list
-        .post
+                = render "stats"
+            
+              
+          .bottom-items
+            .introduce
+              自己紹介文をここに表示 
+
+
+    .contents
+      %ul.menuBer
+        %li#tab__post.menu_item.active
           投稿一覧
-          =render partial: '/posts/post', locals: { post: @post}
-      .content__list
-        .like
-          .contents
-            .content__title
-              いいねしている投稿
-            .contest
-              - @user.liked_posts.each do |post|
-                = post.text
+          %i{class: "fas fa-angle-double-down"}
+        %li#tab__follow.menu_item
+          フォロー
+          %i{class: "fas fa-angle-double-down"}
+        %li#tab__like.menu_item
+          お気に入り一覧
+          %i{class: "fas fa-angle-double-down"}
+
+      %ul.menuContents
+        %li#tab__post.content.show
+          .post
+            = render partial: '/posts/post_show_simple', locals: { post: @post}
+        -# - unless @post.present?
+        -#   .contentInfo__none
+        -#     出品している製品はありません
+        %li#tab__follow.content
+        %li#tab__favorite.content
+          
+          -# - unless @like.present?
+          -#   .contentInfo__none
+          -#     お気に入りしている投稿はありません
+
+
+              

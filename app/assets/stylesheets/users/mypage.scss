@@ -1,0 +1,153 @@
+.mypage {
+  .contents {
+    .upside {
+      display: flex;
+      justify-content: center;
+      .profile {
+        margin: 20px auto;
+        display: flex;
+        .left-bar {
+          width: 300px;
+          .user-icon {
+            display: flex;
+            justify-content: center;
+            .image{
+              width: 200px;
+              height: 200px;
+              margin: 10px;
+              background-color: lime;
+              border-radius: 100px;
+            }
+          }
+        }
+        .right-bar {
+          width: 90%;
+          padding: 20px 40px;
+          
+          .top-items {
+            display: flex;
+            padding-bottom: 15px;
+            .username{
+              padding-right: 20px;
+              font-size: 20px;
+              
+            }
+            .user-edit {
+              display: flex;
+              
+              .edit-btn {
+                background-color: #fff;
+                color: #fff;
+                border-radius: 5px;
+                padding: 5px;
+              }
+              .edit-icon {
+                padding: 5px 0 0 10px;
+                margin-right: 20px;
+              }
+              .DM-btn {
+                background-color: #fff;
+                color: #fff;
+                border-radius: 5px;
+                padding: 5px;
+              }
+              .DM-icon {
+                padding: 5px 0 0 10px;
+              }
+            }
+          }
+          .middle-items {
+            display: flex;
+            padding-bottom: 15px;
+            line-height: 38px;
+            .post-count {
+              padding-right: 10px;
+            }
+            .follow {
+              display: flex;
+              .following {
+              padding-right: 10px;
+
+              }
+              .followers {
+              padding-right: 10px;
+
+              }
+              .follow-btn {
+                .btn {
+                  border-radius: 5px;
+                  border: none;
+                  padding: 5px;
+                  width: 100px;
+                }
+                .follow {
+                  background-color: #bbb;
+                  padding-left: 15px;
+                }
+                .unfollow{
+                  background-color: lightskyblue;
+                }
+              }
+            }
+          }
+          .bottom-items {
+            .introduce {
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.menuBer {
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  .menu_item {
+    width: 30vw;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    .fas {
+      color: #fff;
+    }
+  }
+  .menu_item:hover {
+    .fas {
+      color: #000;
+    }
+  }
+  .active {
+    font-weight: 900;
+    background-color: lightskyblue;
+    .fas {
+      color: lightskyblue;
+    }
+  }
+}
+.menuContents {
+  margin-left: 40px;
+  display: flex;
+  .content{
+    display: none;
+    color: black;
+    .contentInfo{
+      &__lists {
+        font-weight: bold;
+        .contentInfo__list {
+          font-weight: normal;
+        }
+      }
+      &__none{
+      }
+    }
+  }
+  .show{
+    height: 100%;
+    display: block;
+  }
+}
