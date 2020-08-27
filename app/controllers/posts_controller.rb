@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :destory, :show]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
   before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post.destroy
+    @post.destroy
     redirect_to root_path, notice: '投稿が削除されました'
   end
 
@@ -31,8 +31,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    post.update(post_params)
-    if post.save
+    @post.update(post_params)
+    if @post.save
       redirect_to root_path, notice: '更新が完了しました'
     else
       flash.now[:alert] = 'エラーがあります'
