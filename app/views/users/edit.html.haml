@@ -13,4 +13,11 @@
           = f.label :email
         .FormField__input--normal
           = f.email_field :email
+      .FormField
+        .FormField__label--normal
+          = f.label :avatar do
+            アイコン画像を選択
+            %br
+            = icon('fas', 'image', class: 'Form__icon, icon')
+            = f.file_field :avatar,class: "hidden"
       = f.submit "更新", class: 'Button UserButton'

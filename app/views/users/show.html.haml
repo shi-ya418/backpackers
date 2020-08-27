@@ -4,7 +4,10 @@
       .profile
         .left-bar
           .user-icon
-            .image
+            - if @user.avatar.present?
+              = image_tag @user.avatar.url, class: "image"
+            - else 
+              .image
         .right-bar
           .top-items
             .username
