@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :show]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
   before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -23,29 +23,24 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    if post.destroy
-      redirect_to root_path, notice: '投稿が削除されました'
-    end
+    @post.destroy
+    redirect_to root_path, notice: '投稿が削除されました'
   end
 
   def edit
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    if post.save
+    @post.update(post_params)
+    if @post.save
       redirect_to root_path, notice: '更新が完了しました'
     else
-      flash.now[:alert] = 'textを入力してください。'
+      flash.now[:alert] = 'エラーがあります'
       render :new
     end
   end
 
   def show
-    @user =User.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
     @like = Like.new
@@ -65,7 +60,6 @@ class PostsController < ApplicationController
     params.require(:post).permit(:name)
   end
 
-
   def set_post
     @post = Post.find(params[:id])
   end
@@ -73,7 +67,6 @@ class PostsController < ApplicationController
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
-  
 end
 
 

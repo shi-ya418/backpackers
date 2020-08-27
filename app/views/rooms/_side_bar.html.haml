@@ -1,0 +1,12 @@
+.SideBar
+  .Header
+    .Header__username
+      = current_user.username
+  .Header__userList
+    - @entries.each do |entry|
+      .user
+        .user__name
+          = "#{entry.user.username}"
+        .user__message 
+          -# = group.show_last_message
+

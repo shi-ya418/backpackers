@@ -1,19 +1,38 @@
-.contents.row
-  %h2 
-    ="#{@user.username}さんのマイページ"
-.follow
-  - if user_signed_in? && @user != current_user
-    .follow_form
-      - if current_user.following?(@user)
-        = render "unfollow"
-      - else
-        = render "follow"
-=render partial: '/posts/post', locals: { post: @post}
-.like
-  .like__title
-    いいねしている投稿
-  .like__lists
-    - @user.liked_posts.each do |post|
-      .like__list
-        = post.text
-
+.mypage
+  .contents
+    .content__title
+      %h2 
+        ="#{@user.username}さんのマイページ"
+    .content__lists
+      .content__list
+        .follow
+          - if user_signed_in? && @user != current_user
+            .follow_form
+              - if current_user.following?(@user)
+                = render "unfollow"
+              - else
+                = render "follow"
+          - else
+            = render "stats"
+        .DM
+          - unless @user.id == current_user.id
+            -# -if (current_user.followed_by? @user) && (@user.followed_by? current_user)
+            - if @isRoom == true
+              = link_to "DMへ", room_path(@roomId), class: "btn"
+            - else
+              = form_for @room do |f|
+                = fields_for @entry do |entry|
+                  = entry.hidden_field :user_id, value: @user.id
+                = f.submit "DMを始める", class: "btn"
+      .content__list
+        .post
+          投稿一覧
+          =render partial: '/posts/post', locals: { post: @post}
+      .content__list
+        .like
+          .contents
+            .content__title
+              いいねしている投稿
+            .contest
+              - @user.liked_posts.each do |post|
+                = post.text

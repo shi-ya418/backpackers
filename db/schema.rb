@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_095004) do
+ActiveRecord::Schema.define(version: 2020_08_25_122317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2020_08_25_095004) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_entries_on_room_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
   create_table "follow_relationships", force: :cascade do |t|
     t.bigint "follower_id"
     t.bigint "following_id"
@@ -33,16 +42,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_095004) do
     t.index ["following_id"], name: "index_follow_relationships_on_following_id"
   end
 
-  create_table "follows", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "follow_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["follow_id"], name: "index_follows_on_follow_id"
-    t.index ["user_id", "follow_id"], name: "index_follows_on_user_id_and_follow_id", unique: true
-    t.index ["user_id"], name: "index_follows_on_user_id"
-  end
-
   create_table "likes", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
@@ -50,6 +49,16 @@ ActiveRecord::Schema.define(version: 2020_08_25_095004) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
@@ -68,6 +77,12 @@ ActiveRecord::Schema.define(version: 2020_08_25_095004) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
@@ -91,12 +106,14 @@ ActiveRecord::Schema.define(version: 2020_08_25_095004) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "entries", "rooms"
+  add_foreign_key "entries", "users"
   add_foreign_key "follow_relationships", "users", column: "follower_id"
   add_foreign_key "follow_relationships", "users", column: "following_id"
-  add_foreign_key "follows", "users"
-  add_foreign_key "follows", "users", column: "follow_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
 end

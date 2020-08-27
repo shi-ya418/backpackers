@@ -1,0 +1,21 @@
+.Main-chat
+  .Header
+    .TopItems
+      - @entries.each do |entry|
+        = "#{entry.user.username}"
+  .MessageField
+    = render "message"
+
+  .Footer
+    = form_with model: @message do |f|
+      .Form
+        .Form__contents
+          .Form__inputContent
+            = f.text_field :content, class:'Form__inputContent', placeholder: 'type a message'
+            = f.label :image, class: 'image-icon' do
+              = icon('far', 'image')
+              = f.file_field :image, class: 'file'
+            = f.hidden_field :room_id, value: @room.id
+          
+        = f.submit "Send", class: "Form__submit"
+

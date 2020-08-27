@@ -1,11 +1,12 @@
-@import "reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "modules/posts";
+@import "modules/reset";
 @import "modules/header";
-@import "modules/side";
 @import "modules/common";
 @import "modules/likes";
 @import "modules/flash";
-@import "users/new";
+@import "posts/posts";
 @import "posts/new";
+@import "users/new";
+@import "rooms/messages";
+

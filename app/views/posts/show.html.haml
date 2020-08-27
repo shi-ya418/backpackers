@@ -1,36 +1,28 @@
 - if user_signed_in? && current_user.id == @post.user_id
-  %ul.contents-lists
-    %li.contents-list 投稿一覧
-    %li.contents-list お気に入り一覧
-    %li.contents-list ユーザー情報
-    %li.contents-list フォロー一覧
+  .post-show
+    .post-box
+      %h2
+        = "#{@post.user.username}さんの投稿一覧"
+      %ul.item_list
+        %li.edit
+          = icon('far', 'edit', class: 'edit icon')
+          = link_to "編集", edit_post_path(@post.id), method: :get
+        %li.delete
+          = icon('far', 'trash-alt', class: 'delite icon')
+          = link_to "削除", post_path(@post.id), method: :delete
 
-  .post-box
-    %h2
-      = @post.user.username
-      さんの投稿一覧
-    %ul.item_list
-      %li.edit
-        = icon('far', 'edit', class: 'edit icon')
-        = link_to "編集", edit_post_path(@post.id), method: :get
-      %li.delete
-        = icon('far', 'trash-alt', class: 'delite icon')
-        = link_to "削除", post_path(@post.id), method: :delete
-
-    .post__user-name 
-      投稿者:
-      = @post.user.username
-    .post-video
-      = image_tag @post.image.url, class: 'Post__image' if @post.image.present?
-      = video_tag @post.video.url, class: 'Post__video', controls: true, autoplay: true, loop: true, muted: true, width: "800", height: "auto"  if @post.video.present?
-    .post-inofo
-      %h5.post-date
-        投稿日:
-        = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+      .post__user-name 
+        = "投稿者:#{@post.user.username}"
+      .post-image
+        = image_tag @post.image.url, class: 'image' if @post.image.present?
+      .post-video
+        = video_tag @post.video.url, class: 'video', controls: true, muted: true  if @post.video.present?
+      .post-date
+        = "投稿日:#{@post.created_at.strftime("%Y年%m月%d日 %H時%M分")}"
       .post-tag
         - @post.tags.each do |tag|
           = icon('fas', 'tags', class: 'tag icon')
-          = "#{tag.name}"
+          = tag.name
       .post-text
         = @post.text
 
