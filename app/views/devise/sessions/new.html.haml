@@ -2,8 +2,8 @@
   %h2.AccountPage__title
     ログイン
   .AccountPage__form
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .FormField
+    .FormField
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .FormField__input
           %h3 メールアドレス
           = f.email_field :email, placeholder: "例)sample@sample.com", autofocus: true, class: "FormInput"
@@ -11,4 +11,4 @@
           %h3 パスワード(英数字8文字以上)
           = f.password_field :password, placeholder: "英数字8文字以上", autocomplete: "off", class: "FormInput"
         .FormField__submit
-          = f.submit "ログイン", class: 'Button'
+          = f.submit "ログイン", class: 'btn'

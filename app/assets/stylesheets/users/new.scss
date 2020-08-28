@@ -5,19 +5,22 @@
   }
   .AccountPage__form {
     .FormField {
-      &__input{
-        padding-bottom:10px;
-        .FormInput {
-          width: 300px;
+      .new_user, .edit_user {
+        .FormField__input{
+          padding-bottom:10px;
+          .FormInput {
+            width: 300px;
+          }
         }
-      }
-      &__Submit { 
-        padding-top: 10px;
-        .Button {
-          width: 300px;
-          background-color: lightskyblue;
-          border: none;
-          border-radius: 5px;
+        .FormField__submit { 
+          padding-top: 10px;
+          .btn {
+            width: 300px;
+            background-color: lightskyblue;
+            border: none;
+            border-radius: 5px;
+            padding:5px;
+          }
         }
       }
     }

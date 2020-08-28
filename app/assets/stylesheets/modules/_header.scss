@@ -11,6 +11,19 @@
       }
     .search-bar {
       padding-top: 35px;
+      .search-form {
+        .search-input {
+          height: 30px;
+          padding-left: 5px;
+
+        }
+        .search-btn {
+          background-color: lightskyblue;
+          border: none;
+          border-radius: 5px;
+          padding: 5px;
+        }
+      }
     }
     }
   .header-menu {
