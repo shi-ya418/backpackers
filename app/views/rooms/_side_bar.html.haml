@@ -1,10 +1,12 @@
 .SideBar
   .Header
   .Header__userList
-    - @entries.each do |entry|
-      .user
-        .user__name
-          = entry.user.username
-        .user__message 
-          -# = group.show_last_message
+    .user
+      .user__name
+        - @entries.each do |entry|
+          - if entry.user != current_user
+            = entry.user.username
+      .user__message 
+        - if @room.messages.present?
+          = @room.messages.first.content
 
