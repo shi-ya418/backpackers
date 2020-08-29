@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   def show
     @posts = current_user.posts
-    @like = Like.find_by(post_id: params[:post_id], user_id: current_user.id)
+    @like = current_user.likes.includes(:post)
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :avatar, :introduction)
   end
 
   def user_set

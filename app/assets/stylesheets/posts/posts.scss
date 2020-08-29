@@ -8,7 +8,7 @@
   .post-box{
     background-color: rgba($color: #fff, $alpha: 0.5);
     width: 424px;
-    height: 650px;
+    // height: 650px;
     padding: 10px;
     margin: 10px;
     border: 2px solid #ddd;
@@ -31,6 +31,9 @@
         width: 400px;
         height: 400px;
       }
+    }
+    .post-date {
+      font-size: 12px;
     }
 
     .comments {

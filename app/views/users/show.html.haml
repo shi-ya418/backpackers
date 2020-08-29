@@ -4,7 +4,10 @@
       .profile
         .left-bar
           .user-icon
-            .image
+            - if @user.avatar.present?
+              = image_tag @user.avatar.url, class: "image"
+            - else 
+              .image
         .right-bar
           .top-items
             .username
@@ -43,7 +46,7 @@
               
           .bottom-items
             .introduce
-              自己紹介文をここに表示 
+              = @user.introduction
 
 
     .contents
@@ -61,10 +64,11 @@
       %ul.menuContents
         %li#tab__post.content.show
           .post
-            = render partial: '/posts/post_show_simple', locals: { post: @post}
-          - unless @post.present?
-            .contentInfo__none
-              投稿はありません
+            - if @posts.present?
+              = render partial: '/posts/post_show_simple', locals: { post: @post}
+            - else
+              .contentInfo__none
+                投稿はありません
         %li#tab__follow.content
           .followings
             フォロー中一覧
@@ -77,10 +81,12 @@
             - @user.followers.each do |user|
               = link_to "#{user.username}", user_path(user)
         %li#tab__like.content
-          -# = @like.post
-          - unless @like.present?
+          -if @like.present? 
+            - @like.each do |like|
+              = like.post.text
+          - else
             .contentInfo__none
-              お気に入りしている投稿はありません
+              お気に入り登録している投稿はありません
 
 
               

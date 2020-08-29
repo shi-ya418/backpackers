@@ -2,11 +2,12 @@
   .Header
   .Header__userList
     .user
-      .user__name
-        - @entries.each do |entry|
-          - if entry.user != current_user
-            = entry.user.username
-      .user__message 
-        - if @room.messages.present?
-          = @room.messages.first.content
-
+      - @entries.each do |entry|
+        - if entry.user != current_user
+          .user__name
+            = link_to "#{entry.user.username}", room_path(@room.id)
+          .user__message 
+            - if @room.messages.present?
+              = @room.messages.first.content
+     
+        

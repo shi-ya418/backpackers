@@ -7,7 +7,7 @@
       - if user_signed_in? && current_user.id == post.user_id
         %li.edit
           = icon('far', 'edit', class: 'edit icon')
-          = link_to "編集", edit_post_path(post.user_id), method: :get
+          = link_to "編集", edit_post_path(post.id), method: :get
         %li.delete
           = icon('far', 'trash-alt', class: 'delite icon')
           = link_to "削除", post_path(post.id), method: :delete

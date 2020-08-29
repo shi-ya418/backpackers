@@ -11,8 +11,12 @@
           %h3 メールアドレス
           = f.email_field :email, class: "FormInput"
         .FormField__input
-          %h3= f.label :avater
-          = f.file_field :avater, class: "hidden"
-          = icon('fas', 'image', class: 'Form__icon, icon')
+          = f.label :avatar do
+            %h3 アイコン画像を選択
+            = icon('fas', 'image', class: 'Form__icon, icon')
+            = f.file_field :avatar,class: "hidden"
+        .FormField__input
+          %h3 自己紹介文
+          = f.text_field :introduction, placeholder: "例)〇〇といいます。よろしくお願いします", rows: 2, autofocus: true, class: "FormInput"
         .FormField__submit
           = f.submit "更新", class: 'btn'
