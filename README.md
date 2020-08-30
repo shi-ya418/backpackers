@@ -41,7 +41,7 @@ Ruby/Ruby on Rails/PostgreSQL/Github/Heroku/AWS S3/Visual Studio Code
 ![DMページ](DMpage.png)
 
 ## 工夫した点
-タグつけする際に正規表現を用いて複数のタグを付けれるようにしたこと。
+タグつけする際に正規表現を用いて複数のタグを付けれるようにしたこと。  
 ビューをできるだけシンプルにして余計なものをなくしました。
 
 ## 課題と今後実装したい機能
