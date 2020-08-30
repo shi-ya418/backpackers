@@ -19,5 +19,15 @@
         %h3 タグ
         %br
         = f.text_field :name, placeholder: "スペースで複数タグ付けできます", class: "form-input"
+      .FormField__input
+        %h3 カテゴリー
+        %br
+        .category
+          #partent_box
+            = f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"}
+            = icon('fa', 'chevron-down')
+          #children_box
+            
+          
       .FormField__submit
         = f.submit "投稿",class: "Button"

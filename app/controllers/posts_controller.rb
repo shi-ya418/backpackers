@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :destroy, :show]
   before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
+  before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @posts = Post.includes(:user).order("created_at DESC")
@@ -9,6 +10,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @category_parent = Category.where(ancestry: nil)
   end
   
   def create
@@ -18,6 +20,7 @@ class PostsController < ApplicationController
       @post.save_tags(tag_list)
       redirect_to root_path, notice: '投稿されました'
     else
+      @category_parent = Category.where(ancestry: nil)
       flash.now[:alert] = 'textを入力してください。'
       render :new
     end
@@ -36,8 +39,9 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path, notice: '更新が完了しました'
     else
+      @category_parent = Category.where(ancestry: nil)
       flash.now[:alert] = 'エラーがあります'
-      render :new
+      render :edit
     end
   end
 
@@ -52,9 +56,13 @@ class PostsController < ApplicationController
     @posts = Post.search(params[:keyword])
   end 
  
+  def get_category_children
+    @category_children = Category.find(params[:parent_name]).children
+  end
+
   private
   def post_params
-    params.require(:post).permit(:image, :text, :video, :good_ids).merge(user_id: current_user.id)
+    params.require(:post).permit(:image, :text, :video, :category_id).merge(user_id: current_user.id)
   end
 
   def tag_params
@@ -63,6 +71,10 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_category  
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def move_to_index

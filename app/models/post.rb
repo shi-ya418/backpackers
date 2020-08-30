@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_user, through: :likes, source: :user
   belongs_to :user
+  belongs_to :category
 
   mount_uploader :image, ImageUploader
   mount_uploader :video, VideoUploader
