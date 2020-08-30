@@ -18,10 +18,6 @@ class Post < ApplicationRecord
     end
   end  
 
-  # def liked_by?(user)
-  #   likes.where(user_id: user.id).exists?
-  # end
-
   def save_tags(tag_list)
     tag_list.each do |tag|
       unless find_tag = Tag.find_by(name: tag.downcase)
