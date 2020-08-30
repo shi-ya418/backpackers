@@ -6,7 +6,7 @@
 
 ## 本番環境
 ### 接続先情報
-URL https://shi-ya-backpackers.herokuapp.com/
+URL https://shi-ya-backpackers.herokuapp.com/  
 ID/Pass  
 ID: takuya418  
 Pass: takuya418  
@@ -19,7 +19,7 @@ Pass: takuya418
 Ruby/Ruby on Rails/PostgreSQL/Github/Heroku/AWS S3/Visual Studio Code
 
 ### 開発期間と平均作業時間
-開発期間：7/23~8/3,8/21~30(22日間)  
+開発期間：7/23-8/3,8/21-30(22日間)  
 1日あたりの平均作業時間：8時間
 
 ## 制作背景
