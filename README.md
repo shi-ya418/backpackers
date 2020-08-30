@@ -28,17 +28,17 @@ Ruby/Ruby on Rails/PostgreSQL/Github/Heroku/AWS S3/Visual Studio Code
 
 ## デモ画像・動画
 ### トップページ
-![トップページ](toppage.png)
+![トップページ](readme_images/toppage.png)
 ### マイページ
-![マイページ](mypage.png)
+![マイページ](readme_images/mypage.png)
 ### 投稿ページ
-![投稿ページ](post_new.png)
+![投稿ページ](readme_images/post_new.png)
 ### 編集ページ
-![編集ページ](post_edit.png)
+![編集ページ](readme_images/post_edit.png)
 ### 投稿詳細ページ
-![投稿詳細](post_detail.png)
+![投稿詳細](readme_images/post_detail.png)
 ### DMページ
-![DMページ](DMpage.png)
+![DMページ](readme_images/DMpage.png)
 
 ## 工夫した点
 タグつけする際に正規表現を用いて複数のタグを付けれるようにしたこと。
