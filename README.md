@@ -1,86 +1,153 @@
-# README
+# BACKPACKERS
+## 概要
+旅行者向けのSNSサイトです。　　
+### 使える機能
+ユーザー登録、ログイン、ログアウト、画像の投稿、編集、削除、ユーザープロフィール、ユーザーアイコンの変更、フォロー機能、いいね機能、DM機能
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 本番環境
+### 接続先情報
+URL https://shi-ya-backpackers.herokuapp.com/
+ID/Pass  
+ID: takuya418  
+Pass: takuya418  
+テスト用アカウント  
+メールアドレス: @gmail.com  
+パスワード: 11111111  
 
-Things you may want to cover:
+## 開発状況
+### 開発環境
+Ruby/Ruby on Rails/PostgreSQL/Github/Heroku/AWS S3/Visual Studio Code
 
-* Ruby version
+### 開発期間と平均作業時間
+開発期間：8/~8/(日間)  
+1日あたりの平均作業時間：9時間
 
-* System dependencies
+## 制作背景
+私自身が旅行が好きなので旅行者専用のSNSがあれば、行きたい国や地域のことを調べたり、同じ国に行ったことがある人と繋がることや、旅行中に繋がることができると考えたから。  
+また、コロナの影響で観光業が落ち込んでいるので応援する気持ちも込めて作成しました。
 
-* Configuration
+## デモ画像・動画
 
-* Database creation
+## 工夫した点
 
-* Database initialization
+## 課題と今後実装したい機能
+### 課題
+初期のデーターベール設計が不十分だったため追加でカラムの追加が起きていまいマイグレションファイルが増えてしまった。
+ブランチを使わずにmasterで変更していますことが多々あった。
+コミットを定期的にしていなく同じことを繰り返すことがあった。
 
-* How to run the test suite
+### 今後実装したい機能
+DMをフォロワー同士限定でできるように修正
+動画がローカル環境でしか投稿できない点を修正
+写真、動画の複数枚投稿を可能に。
+カテゴリー機能（国と地域）の追加
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# backpackers DB design 
-## user table
+## DB設計 
+### user table
 |Column|Type|Option|
 |------|----|------|
-|name|string|null: false|
+|username|string|null: false|
 |email|string|null: false|
 |password|string|null: false|
-### Association
-- has_many :comments
-- has_many :posts
-- has_many :goods
+|avater|string||
+|introduction|string||
 
-## comment table
+#### Association
+- has_many :posts, dependent: :destroy
+- has_many :comments
+- has_many :likes, dependent: :destroy
+- has_many :liked_posts, through: :likes, source: :post
+- has_many :following_relationships,foreign_key: "follower_id", class_name: "FollowRelationship",  dependent: :destroy
+- has_many :followings, through: :following_relationships
+- has_many :follower_relationships,foreign_key: "following_id",class_name: "FollowRelationship", dependent: :destroy
+- has_many :followers, through: :follower_relationships 
+- has_many :messages, dependent: :destroy
+- has_many :entries, dependent: :destroy
+
+### comment table
 |Column|Type|Option|
 |------|----|------|
 |text|text|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |post_id|integer|null: false, foreign_key: true|
-### Association
+#### Association
 - belongs_to :post
 - belongs_to :user
 
-## post table
+### post table
 |Column|Type|Option|
 |------|----|------|
 |text|text|null: false|
-|image|string|null: false|
-|video|string|null: false|
+|image|string||
+|video|string||
 |user_id|integer|null: false, foreign_key: true|
-|area_id|integer|null: false, foreign_key: true|
-### Association
+#### Association
 - has_many :comments
-- has_many :goods
+- has_many :post_tags, dependent: :destroy
+- has_many :tags, through: :post_tags
+- has_many :likes, dependent: :destroy
+- has_many :liked_user, through: :likes, source: :user
 - belongs_to :user
-- belongs_to :area
 
-## area table
+### post_tag table
 |Column|Type|Option|
 |------|----|------|
-|name|string|null: false|
-|country_id|integer|null: false, foreign_key: true|
-### Association
-- has_many :posts
-- belongs_to :country
+|post_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
+#### Association
+- belongs_to :post
+- belongs_to :tag
 
-## country table
+### tag table
 |Column|Type|Option|
 |------|----|------|
-|name|string|null: false|
-### Association
-- belongs_to :area
+|name|string|uniqueness:true|
+#### Association
+- has_many :post_tags, dependent: :destroy
+- has_many :posts, through: :post_tags
 
-## good table
+### like table
 |Column|Type|Option|
 |------|----|------|
-|num|integer|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |post_id|integer|null: false, foreign_key: true|
-### Association
+#### Association
 - belongs_to :user
 - belongs_to :post
+
+### follow_relationship table
+|Column|Type|Option|
+|------|----|------|
+|follower_id|integer|null: false, foreign_key: true|
+|following_id|integer|null: false, foreign_key: true|
+#### Association
+- belongs_to :follower, class_name: "User"
+- belongs_to :following, class_name: "User"
+
+### entry table
+|Column|Type|Option|
+|------|----|------|
+|user_id|integer|null: false, foreign_key: true|
+|room_id|integer|null: false, foreign_key: true|
+#### Association
+- belongs_to :room
+- belongs_to :user
+
+### room table
+|Column|Type|Option|
+|------|----|------|
+|name|string||
+#### Association
+- has_many :messages, dependent: :destroy
+- has_many :entries, dependent: :destroy
+
+### message table
+|Column|Type|Option|
+|------|----|------|
+|content|text|null: false|
+|user_id|integer|null: false, foreign_key: true|
+|room_id|integer|null: false, foreign_key: true|
+#### Association
+- belongs_to :room
+- belongs_to :user
 
